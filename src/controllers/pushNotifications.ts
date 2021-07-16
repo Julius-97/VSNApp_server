@@ -13,6 +13,7 @@ export const getSubscriptionInfo: RequestHandler<{ tokenID: string }> = (
   res,
   next
 ) => {
+  console.log('getting info for: ' + req.params.tokenID);
   Subscription.findOne({ tokenID: req.params.tokenID })
     .populate('categories', 'name')
     .exec()
@@ -33,6 +34,7 @@ export const subscribe: RequestHandler<{ tokenID: string }> = async (
   res,
   next
 ) => {
+  console.log('new subscription from: ' + req.hostname);
   const selectedCategoriesID = (req.body as subscriptionContent).categories;
   let selectedCategoriesRef: ICategory[] = [];
   for (let i = 0; i < selectedCategoriesID.length; i++) {

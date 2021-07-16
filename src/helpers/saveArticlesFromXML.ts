@@ -62,6 +62,7 @@ export const saveArticlesByXML: fetchArt = async (xmlURL) => {
     for (let el of parsedXML.rss.channel.item) {
       // loop trough items (articles)
       if (el.title && el.title.length > 0) {
+        console.log(el.title);
         let category: string[] = [];
         let artCategories: ICategory[] = [];
         let imageURL: string = await getImageURL(el.link);
