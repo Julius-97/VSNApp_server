@@ -44,7 +44,6 @@ const saveArticlesByXML = (xmlURL) => __awaiter(void 0, void 0, void 0, function
         for (let el of parsedXML.rss.channel.item) {
             // loop trough items (articles)
             if (el.title && el.title.length > 0) {
-                console.log(el.title);
                 let category = [];
                 let artCategories = [];
                 let imageURL = yield getImageURL(el.link);
