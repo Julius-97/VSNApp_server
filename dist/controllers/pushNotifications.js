@@ -45,14 +45,14 @@ const subscribe = (req, res, next) => __awaiter(void 0, void 0, void 0, function
         .then((sub) => {
         if (sub) {
             sub.categories = selectedCategoriesRef;
-            sub.save();
+            sub.save().then(() => console.log('updated sub'));
         }
         else {
             const newSub = new subscription_1.Subscription({
                 tokenID: req.params.tokenID,
                 categories: selectedCategoriesRef,
             });
-            newSub.save();
+            newSub.save().then(() => console.log('new sub'));
         }
     })
         .catch((err) => console.log(err));

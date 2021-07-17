@@ -48,13 +48,13 @@ export const subscribe: RequestHandler<{ tokenID: string }> = async (
     .then((sub) => {
       if (sub) {
         sub.categories = selectedCategoriesRef;
-        sub.save();
+        sub.save().then(()=>console.log('updated sub'));
       } else {
         const newSub: ISubscription = new Subscription({
           tokenID: req.params.tokenID,
           categories: selectedCategoriesRef,
         });
-        newSub.save();
+        newSub.save().then(()=>console.log('new sub'));
       }
     })
     .catch((err) => console.log(err));
