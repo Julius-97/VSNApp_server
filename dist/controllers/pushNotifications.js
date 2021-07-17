@@ -13,6 +13,7 @@ exports.subscribe = exports.getSubscriptionInfo = void 0;
 const category_1 = require("../models/category");
 const subscription_1 = require("../models/subscription");
 const getSubscriptionInfo = (req, res, next) => {
+    console.log('getting info for: ' + req.params.tokenID);
     subscription_1.Subscription.findOne({ tokenID: req.params.tokenID })
         .populate('categories', 'name')
         .exec()
@@ -30,6 +31,7 @@ const getSubscriptionInfo = (req, res, next) => {
 };
 exports.getSubscriptionInfo = getSubscriptionInfo;
 const subscribe = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('new subscription from: ' + req.hostname);
     const selectedCategoriesID = req.body.categories;
     let selectedCategoriesRef = [];
     for (let i = 0; i < selectedCategoriesID.length; i++) {
